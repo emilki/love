@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story | Emil & Alena</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            background: linear-gradient(135deg, #f9e4d4 0%, #f5d0c5 100%);
+            color: #5d4037;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: #e91e63;
+            opacity: 0.7;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        .heart-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .heart-2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .heart-3 { bottom: 15%; left: 20%; animation-delay: 2s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #5d4037;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 20px;
+            max-width: 600px;
+            margin: 20px auto 0;
+            color: #795548;
+        }
+        
+        /* Photo Album Styles */
+        .photo-album {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .photo-frame {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            transform: rotate(0);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .photo-frame:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-frame:nth-child(even):hover {
+            transform: translateY(-10px) rotate(-1deg);
+        }
+        
+        .photo-frame::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(233, 30, 99, 0.2);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .photo {
+            flex: 1;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .photo::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 154, 158, 0.1) 0%, rgba(250, 208, 196, 0.1) 100%);
+            z-index: 1;
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-frame:hover .photo img {
+            transform: scale(1.05);
+        }
+        
+        .photo-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #e91e63;
+            z-index: 2;
+        }
+        
+        .photo-caption {
+            padding: 15px 5px 5px;
+            text-align: center;
+            font-style: italic;
+            color: #795548;
+        }
+        
+        /* Love Timeline */
+        .timeline {
+            margin: 60px 0;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #5d4037;
+            position: relative;
+        }
+        
+        .timeline-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            width: calc(50% - 40px);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 40px);
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e91e63;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -50px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -50px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #e91e63;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-date i {
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(93, 64, 55, 0.2);
+            width: 100%;
+        }
+        
+        .love-message {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            font-style: italic;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #e91e63;
+            margin-top: 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                left: 80px !important;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: -50px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .photo-album {
+                grid-template-columns: 1fr;
+            }
+            
+            .heart-decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="heart-decoration heart-1">❤</div>
+            <div class="heart-decoration heart-2">❤</div>
+            <div class="heart-decoration heart-3">❤</div>
+            
+            <h1>Emil & Alena</h1>
+            <p class="subtitle">Our journey together through the lens of love and cherished memories</p>
+        </header>
+        
+        <div class="photo-album">
+            <!-- Photo 1 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">1</div>
+                    <img src="images/img1.jpg">
+                </div>
+                <p class="photo-caption">hah ne vlezlaaaa (03/29/25)</p>
+            </div>
+            
+            <!-- Photo 2 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">2</div>
+                    <img src="images/img2.jpg">
+                </div>
+                <p class="photo-caption">The day of the second kiss (01/26/25)</p>
+            </div>
+            
+            <!-- Photo 3 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">3</div>
+                    <img src="images/img3.jpg">
+                </div>
+                <p class="photo-caption">Hah, first kiss on camera (01/26/25)</p>
+            </div>
+            
+            <!-- Photo 4 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">4</div>
+                    <img src="images/img4.jpg">
+                </div>
+                <p class="photo-caption">Finally got you out for a long walk (05/09/25)</p>
+            </div>
+            
+            <!-- Photo 5 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">5</div>
+                    <img src="images/img5.jpg">
+                </div>
+                <p class="photo-caption">Just a random date (ofc before eating ramen) (03/07/25)</p>
+            </div>
+            
+            <!-- Photo 6 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">6</div>
+                    <img src="images/img6.jpg">
+                </div>
+                <p class="photo-caption">Ramen, AGAIN?! someone froze (05/09/25)</p>
+            </div>
+            
+            <!-- Photo 7 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">7</div>
+                    <img src="images/img7.jpg">
+                </div>
+                <p class="photo-caption">Took a little nap on Valentine's Day (02/14/25)</p>
+            </div>
+            
+            <!-- Photo 8 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">8</div>
+                    <img src="images/img8.jpg">
+                </div>
+                <p class="photo-caption">Quality just said good bye (remind me to fix that) (02/14/25)</p>
+            </div>
+            
+            <!-- Photo 9 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">9</div>
+                    <img src="images/img9.jpg">
+                </div>
+                <p class="photo-caption">OH, SAME DAY AGAIN(Thank you, best Valentine's day I could even dream of) (02/14/25)</p>
+            </div>
+            
+            <!-- Photo 10 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">10</div>
+                    <img src="images/img10.jpg">
+                </div>
+                <p class="photo-caption">Some movieeeeee time(had some extra funnn, hehe) (03/23/25)</p>
+            </div>
+            
+            <!-- Photo 11 -->
+            <div class="photo-frame">
+                <div class="photo">
+                    <div class="photo-number">11</div>
+                    <img src="images/img11.jpg">
+                </div>
+                <p class="photo-caption">Thank you, my Snow White (03/23/25)</p>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <h2 class="timeline-title">Our Love Timeline</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> October 2024</div>
+                <h3>First Messages</h3>
+                <p>The day we first messaged to each other. Little did we know this would change our lives forever.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> November 2024</div>
+                <h3>Our First Date</h3>
+                <p>Oh, I know you don't count that, but I doooo. I had a great time with you, trying my best to see your beautiful smile, even though we had to be serious by looking at, hahaha, taped banana for 1.5 million dollars.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> December 2024</div>
+                <h3>First Time Saying I Love You</h3>
+                <p>Yes, I knew you are the one who I was looking for, literally perfect (baddieeee 10000/10)</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> January 2025</div>
+                <h3>YES FIRST KISS</h3>
+                <p>It was so perfect, I love you soooo much, and with those kisses even more). Thank you, my sweetie.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> January 2025 - May 2025</div>
+                <h3>Having good and bad times together</h3>
+                <p>The most important period, when the harsh reality hits hard, what should we do? Too many questions...</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date"><i class="fas fa-heart"></i> Future</div>
+                <h3>Move in together)))</h3>
+                <p>Just dreaming for now, I'll do my best, busichka, I will work on my weaknesses.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="love-message">"In your smile, I see something more beautiful than the stars." - To the most amazing person in my life</p>
+            <p>Made with ❤ for the love of my life</p>
+            <p class="signature">Forever Yours</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animation for photo frames on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoFrames = document.querySelectorAll('.photo-frame');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0) rotate(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            photoFrames.forEach(frame => {
+                frame.style.opacity = 0;
+                frame.style.transform = 'translateY(50px) rotate(5deg)';
+                frame.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(frame);
+            });
+            
+            // Add romantic message animation
+            const loveMessage = document.querySelector('.love-message');
+            setInterval(() => {
+                loveMessage.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    loveMessage.style.transform = 'scale(1)';
+                }, 500);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
